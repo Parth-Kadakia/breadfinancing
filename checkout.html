@@ -49,7 +49,6 @@
             customTotal: 10000,
             shippingContact: shippingContact,
             billingContact: billingContact,
-            tax: 0,
             done: function(){
             
             },
@@ -73,7 +72,7 @@
             if(billingContact.state === 'NY'){
                 total: items[0].price + ((items[0].price * 5)/100)
             }else{
-                total: tems[0].price
+                total: items[0].price
             }
             return total;
         };
