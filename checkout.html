@@ -26,7 +26,7 @@
             zip:      '10023',
             phone:    '5612253655',
             city:     'New York',
-            state:    'NY',
+            state:    'NJ',
         };
 
         // Likewise, if you have the billing contact, you can pass it in to us
@@ -40,7 +40,7 @@
             zip:      '10023',
             phone:    '5612253655',
             city:     'New York',
-            state:    'NY',
+            state:    'NJ',
         };
         var opts = {
             buttonId: 'bread-checkout-btn',
@@ -76,6 +76,10 @@
             type: '2-Day Shipping'  
         }];
         opts.calculateTax = function(shippingContact, billingContact, callback) {
+
+            // Can also call a backend API (please refer to the PHP in the folder, since I did not have a PHP running host, I did not call the API)
+
+
             if(billingContact.state === 'NY'){
                 taxTotal = ((opts.items[0].price * opts.items[0].quantity) * 5)/100;
             }else{
