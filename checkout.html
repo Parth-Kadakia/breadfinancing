@@ -77,7 +77,7 @@
         }];
         opts.calculateTax = function(shippingContact, billingContact, callback) {
             if(billingContact.state === 'NY'){
-                taxTotal = (opts.items[0].price * opts.items[0].quantity) + ((opts.items[0].price * opts.items[0].quantity) * 500/100);
+                taxTotal = ((opts.items[0].price * opts.items[0].quantity) * 500)/100;
             }else{
                 taxTotal = 0;
             }
