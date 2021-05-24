@@ -17,34 +17,34 @@
             <!-- END STEP 2a -->
             <script>
             var opts = {
-        callbackURL: '/replace/with/your/url',
-        completeURL: '/replace/with/your/url',
-        errorURL: '/replace/with/your/url',
-        orderRef: 'ABCD1234',
-        items: [{
-          name: 'Couch',
-          price: 150000,
-          sku: 'COUCH123',
-          imageUrl: '/replace/with/your/url',
-          detailUrl: '/replace/with/your/url', 
-          quantity: 1
-        }],
-        shippingOptions:[{
-          type: 'Ground',
-          typeId: '0123',
-          cost: 1500
-        }],
-        tax: 1000,
-       
-      };
+              callbackURL: '/replace/with/your/url',
+              completeURL: '/replace/with/your/url',
+              errorURL: '/replace/with/your/url',
+              orderRef: 'ABCD1234',
+              items: [{
+                name: 'Jeep Sticker',
+                price: 10000,
+                sku: 'Item1',
+                imageUrl: 'https://thumbs.dreamstime.com/z/demo-product-demonstration-road-sign-service-example-demo-product-demonstration-road-sign-service-example-white-background-144931079.jpg',
+                detailUrl: 'https://thumbs.dreamstime.com/z/demo-product-demonstration-road-sign-service-example-demo-product-demonstration-road-sign-service-example-white-background-144931079.jpg', 
+                quantity: 1
+              }],
+              shippingOptions:[{
+                type: 'Ground',
+                typeId: '0123',
+                cost: 1500
+              }],
+              tax: 1000,
+       };
                    
       bread.cartCreate(opts, function(err, data) {
         if (err) {
+          console.log(err);
           // throw an error
         } else {
           // Take a look at data.asLowAs (particularly data.asLowAs.amount and data.asLowAs.asLowAsText)
           // Generate email template for customer and send data.redirectUrl
-        }
+          console.log(data);        }
       });
       </script>
     
