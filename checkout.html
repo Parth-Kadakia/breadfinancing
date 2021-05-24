@@ -46,8 +46,14 @@
             buttonId: 'bread-checkout-btn',
             actAsLabel: false,
             asLowAs: true,
-            customTotal: 10000,
-            price:10000,
+            items: [{
+                name: 'Item1',
+                price: 10000,
+                sku: 'Item1',
+                imageUrl: 'https://thumbs.dreamstime.com/z/demo-product-demonstration-road-sign-service-example-demo-product-demonstration-road-sign-service-example-white-background-144931079.jpg',
+                detailUrl: 'https://thumbs.dreamstime.com/z/demo-product-demonstration-road-sign-service-example-demo-product-demonstration-road-sign-service-example-white-background-144931079.jpg',
+                quantity: 1
+            }],
             shippingContact: shippingContact,
             billingContact: billingContact,
             done: function(){
@@ -67,11 +73,11 @@
             },{
             typeId: 'ship-type-2',
             cost: 499,
-            type: '2 Day'  
+            type: '2-Day Shipping'  
         }];
         opts.calculateTax = function(shippingContact, billingContact, callback) {
             if(billingContact.state === 'NY'){
-                taxTotal = 500;
+                taxTotal = opts.items[0].price + (opts.items[0].price * 500/100);
             }else{
                 taxTotal = 0;
             }
@@ -98,6 +104,7 @@
             }
         };
 
+        
         
         bread.checkout(opts);
       </script>
