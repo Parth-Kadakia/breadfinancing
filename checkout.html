@@ -70,21 +70,38 @@
             type: 'Standard Shipping'  
         }];
         opts.calculateTax = function(shippingContact, billingContact, callback) {
-            $.ajax({
-                url: '/tax',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                shippingAddress: shippingContact,
-                total: items[0].price * items[0].quantity
-                })
-            })
-            .done(function(data){
-                callback(null, data);
-            })
-            .fail(function(err){
-                callback(err);
-            });
+            if(billingContact.state === 'NY'){
+                total: items[0].price + ((items[0].price * 5)/100)
+            }else{
+                total: tems[0].price
+            }
+            return total;
+        };
+
+        opts.onCustomerClose = function(err, customer) {
+            if (err !== null) {
+                console.error("An error occurred getting customer close data.");
+                return;
+            }
+            var prequalStatus = customer.state;
+            switch (prequalStatus) {
+                case 'PREQUALIFIED':
+                console.log(customer.email + " was prequalified for financing.");
+                break;
+                case 'PARTIALLY_PREQUALIFIED':
+                console.log(customer.email + " was partially prequalified for financing.");
+                break;
+                case 'NOT_PREQUALIFIED':
+                console.log(customer.email + " was not prequalified for financing.");
+                break;
+                case 'ABANDONED':
+                if (customer.email === undefined || customer.email === null) {
+                    console.log("Unknown customer abandoned their prequalification attempt.");
+                } else {
+                    console.log(customer.email + " abandoned their prequalification attempt.");
+                }
+                break;
+            }
         };
 
         
