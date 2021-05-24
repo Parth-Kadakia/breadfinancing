@@ -15,7 +15,7 @@
 		<div id="bread-checkout-btn"></div>
     </div>
 
-    <div id="abandonedmsg">
+    <div id="abandonedmsg" style="display: none;">
         <span class="alert alert-info" id="msg"></span>
     </div>
 	
@@ -116,14 +116,17 @@
             var prequalStatus = customer.state;
             switch (prequalStatus) {
                 case 'PREQUALIFIED':
+                    document.getElementById('abandonedmsg').style.display = "block";
                     document.getElementById('msg').textContent = customer.email + " was prequalified for financing.";
                     console.log(customer.email + " was prequalified for financing.");
                 break;
                 case 'PARTIALLY_PREQUALIFIED':
+                    document.getElementById('abandonedmsg').style.display = "block";
                     document.getElementById('msg').textContent = customer.email + " was partially prequalified for financing.";
                     console.log(customer.email + " was partially prequalified for financing.");
                 break;
                 case 'NOT_PREQUALIFIED':
+                    document.getElementById('abandonedmsg').style.display = "block";
                     document.getElementById('msg').textContent = customer.email + " was not prequalified for financing.";
                     console.log(customer.email + " was not prequalified for financing.");
                 break;
