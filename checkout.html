@@ -70,11 +70,12 @@
         }];
         opts.calculateTax = function(shippingContact, billingContact, callback) {
             if(billingContact.state === 'NY'){
-                total: items[0].price + ((items[0].price * 5)/100)
+                total: opts.items[0].price + ((opts.items[0].price * 5)/100)
             }else{
-                total: items[0].price
+                total: opts.items[0].price
             }
-            return total;
+            console.log(total);
+            //callback(null, data.data.taxTotal);
         };
 
         opts.onCustomerClose = function(err, customer) {
