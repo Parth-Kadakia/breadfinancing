@@ -46,7 +46,7 @@
             buttonId: 'bread-checkout-btn',
             actAsLabel: false,
             asLowAs: true,
-            customTotal: 100,
+            customTotal: 10000,
             shippingContact: shippingContact,
             billingContact: billingContact,
             tax: 0,
@@ -77,7 +77,7 @@
             }
         };
 
-        console.log(opts.shippingOptions);
+        console.log(opts.total);
         bread.checkout(opts);
       </script>
     
