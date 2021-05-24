@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Bread Checkout</title>
+
+  <!-- STEP 1: Adding bread.js to Your Site -->
+	<script id='script' src="https://checkout-sandbox.getbread.com/bread.js" data-api-key="7101ea30-8ae3-47ab-a8bd-235860d36f3e"></script>
+  
+  </head>
+  <body>
+    <div class='page'>
+    	<!-- STEP 2:Button Placement and Configuration -->
+		<div id="bread-checkout-btn"></div>
+    </div>
+			<!-- END STEP 2a -->
+      <script>
+        var opts = {
+  callbackURL: '/replace/with/your/url',
+  completeURL: '/replace/with/your/url',
+  errorURL: '/replace/with/your/url',
+  orderRef: 'ABCD1234',
+  items: [{
+    name: 'Couch',
+    price: 150000,
+    sku: 'COUCH123',
+    imageUrl: '/replace/with/your/url',
+    detailUrl: '/replace/with/your/url', 
+    quantity: 1
+  }],
+  shippingOptions:[{
+    type: 'Ground',
+    typeId: '0123',
+    cost: 1500
+  }],
+  tax: 1000,
+ 
+};
+                   
+bread.cartCreate(opts, function(err, data) {
+  if (err) {
+    // throw an error
+  } else {
+    // Take a look at data.asLowAs (particularly data.asLowAs.amount and data.asLowAs.asLowAsText)
+    // Generate email template for customer and send data.redirectUrl
+  }
+});
+      </script>
+    
+  </body>
+</html>

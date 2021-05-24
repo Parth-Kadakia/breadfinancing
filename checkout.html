@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Bread Checkout</title>
+
+  <!-- STEP 1: Adding bread.js to Your Site -->
+	<script id='script' src="https://checkout-sandbox.getbread.com/bread.js" data-api-key="7101ea30-8ae3-47ab-a8bd-235860d36f3e"></script>
+  
+  </head>
+  <body>
+    <div class='page'>
+    	<!-- STEP 2:Button Placement and Configuration -->
+		<div id="bread-checkout-btn"></div>
+    </div>
+			<!-- END STEP 2a -->
+      <script>
+        // If you have their shipping address already, you can pass it to us
+        // so they do not have to fill it out again.
+        var shippingContact = {
+            firstName: 'Parth',
+            lastName: 'Kadakia',
+            address:  '1 John Doe',
+            address2: '',
+            zip:      '08901',
+            phone:    '5612253655',
+            city:     'New Brunswick',
+            state:    'NJ',
+        };
+
+        // Likewise, if you have the billing contact, you can pass it in to us
+        // so they do not have to.
+        var billingContact = {
+            email:      'pkadakia23@gmail.com',
+            firstName:  'Parth',
+            lastName:   'Kadakia',
+            address:  '1 John Doe',
+            address2: '',
+            zip:      '08901',
+            phone:    '5612253655',
+            city:     'New Brunswick',
+            state:    'NJ',
+        };
+        var opts = {
+            buttonId: 'bread-checkout-btn',
+            actAsLabel: false,
+            asLowAs: true,
+            customTotal: 100,
+            shippingContact: shippingContact,
+            billingContact: billingContact,
+            tax: 0,
+            done: function(){
+            
+            },
+            customCSS : '#bread-button,body,html{height:100%;margin:0;width:100%}body{display:table}#bread-button{background:red;color:#FFFFFF;border:0px solid #ffffff;border-radius:4px;display:table-cell;font-family:Lato, HelveticaNeue, Helvetica Neue, sans-serif;font-size:16px;font-weight:400;text-align:center;vertical-align:middle;transition:all .3s ease}.bread-btn{cursor:pointer}#bread-button.bread-btn:hover{background:#50c742}.bread-embed-inner,.bread-label .bread-embed-icon{display:inline-block}.bread-label .bread-embed-icon:after{background:rgba(255,255,255,.5);border-radius:50px;color:#333;content:"i";cursor:pointer;display:inline-block;line-height:1;margin-left:8px;padding:4px 9px}.bread-pot:before{content:"Pay over time"}.bread-btn .bread-as-low-as:before,.bread-label .bread-as-low-as:before{content:"As low as "}.bread-for:before{content:"For "}'
+          /* END STEP 4 */
+        };
+
+        console.log("Billing State " + opts.billingContact.state);
+       
+
+        opts.shippingOptions = [{
+            typeId: 'ship-type-1',
+            cost: 999,
+            type: 'Overnight Shipping'
+            },{
+            typeId: 'ship-type-2',
+            cost: 499,
+            type: 'Standard Shipping'  
+        }];
+        opts.calculateTax = function(shippingContact, billingContact, callback) {
+            if(billingContact.state === 'NY'){
+                return 5;
+            }else{
+                return 0;
+            }
+        };
+
+        console.log(opts.shippingOptions);
+        bread.checkout(opts);
+      </script>
+    
+  </body>
+</html>
