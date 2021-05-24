@@ -14,41 +14,43 @@
     	<!-- STEP 2:Button Placement and Configuration -->
 		<div id="bread-checkout-btn"></div>
     </div>
+
+    <!-- Alert div to display URL for cart -->
     <div id="abandonedmsg" style="display: none;">
       <span class="alert alert-info" id="msg"></span>
     </div>
-            <!-- END STEP 2a -->
-            <script>
-            var opts = {
-              orderRef: 'ABCD1234',
-              items: [{
-                name: 'Jeep Sticker',
-                price: 10000,
-                sku: 'Item1',
-                imageUrl: 'https://thumbs.dreamstime.com/z/demo-product-demonstration-road-sign-service-example-demo-product-demonstration-road-sign-service-example-white-background-144931079.jpg',
-                detailUrl: 'https://thumbs.dreamstime.com/z/demo-product-demonstration-road-sign-service-example-demo-product-demonstration-road-sign-service-example-white-background-144931079.jpg', 
-                quantity: 1
-              }],
-              shippingOptions:[{
-                type: 'Ground',
-                typeId: '0123',
-                cost: 1500
-              }],
-              tax: 1000,
-       };
-                   
+        
+    <script>
+      var opts = {
+        orderRef: 'Ord12345',
+        items: [{
+          name: 'Jeep Sticker',
+          price: 10000,
+          sku: 'Item1',
+          imageUrl: 'https://thumbs.dreamstime.com/z/demo-product-demonstration-road-sign-service-example-demo-product-demonstration-road-sign-service-example-white-background-144931079.jpg',
+          detailUrl: 'https://thumbs.dreamstime.com/z/demo-product-demonstration-road-sign-service-example-demo-product-demonstration-road-sign-service-example-white-background-144931079.jpg', 
+          quantity: 1
+        }],
+        shippingOptions:[{
+          type: 'Ground',
+          typeId: '0123',
+          cost: 1500
+        }],
+        tax: 1000,
+      };
+              
       bread.cartCreate(opts, function(err, data) {
-        if (err) {
-          console.log(err);
-          // throw an error
-        } else {
-          // Take a look at data.asLowAs (particularly data.asLowAs.amount and data.asLowAs.asLowAsText)
-          // Generate email template for customer and send data.redirectUrl
-          document.getElementById('abandonedmsg').style.display = "block";
-          document.getElementById('msg').textContent = "Cart URL to email/text customer is : " + data.redirectUrl;
-          console.log(data);        }
+      if (err) {
+        console.log(err);
+        // throw an error
+      } else {
+        // Take a look at data.asLowAs (particularly data.asLowAs.amount and data.asLowAs.asLowAsText)
+        // Generate email template for customer and send data.redirectUrl
+        document.getElementById('abandonedmsg').style.display = "block";
+        document.getElementById('msg').textContent = "Cart URL to email/text customer is : " + data.redirectUrl;
+        console.log(data);        }
       });
-      </script>
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </body>
 </html>

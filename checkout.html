@@ -14,14 +14,13 @@
     	<!-- STEP 2:Button Placement and Configuration -->
 		<div id="bread-checkout-btn"></div>
     </div>
-
+    <!-- Alert to show message if user does not complete the process -->
     <div id="abandonedmsg" style="display: none;">
         <span class="alert alert-info" id="msg"></span>
     </div>
 	
       <script>
-        // If you have their shipping address already, you can pass it to us
-        // so they do not have to fill it out again.
+        // Shipping Address
         var shippingContact = {
             firstName: 'Parth',
             lastName: 'Kadakia',
@@ -33,8 +32,7 @@
             state:    'NJ',
         };
 
-        // Likewise, if you have the billing contact, you can pass it in to us
-        // so they do not have to.
+        // Billing Address
         var billingContact = {
             email:      'pkadakia23@gmail.com',
             firstName:  'Parth',
@@ -63,12 +61,12 @@
             done: function(){
             
             },
+            // Custom CSS to make the button red. On Hover color is also set to Red as to keep the button red.
             customCSS : '#bread-button,body,html{height:50%;margin:0;width:50%}body{display:table}#bread-button{background:red;color:#FFFFFF;border:0px solid #ffffff;border-radius:4px;display:table-cell;font-family:Lato, HelveticaNeue, Helvetica Neue, sans-serif;font-size:16px;font-weight:400;text-align:center;vertical-align:middle;transition:all .3s ease}.bread-btn{cursor:pointer}#bread-button.bread-btn:hover{background:red}.bread-embed-inner,.bread-label .bread-embed-icon{display:inline-block}.bread-label .bread-embed-icon:after{background:rgba(255,255,255,.5);border-radius:50px;color:#333;content:"i";cursor:pointer;display:inline-block;line-height:1;margin-left:8px;padding:4px 9px}.bread-pot:before{content:"Pay over time"}.bread-btn .bread-as-low-as:before,.bread-label .bread-as-low-as:before{content:"As low as "}.bread-for:before{content:"For "}'
-          /* END STEP 4 */
+          
         };
-
-        console.log("Billing State " + opts.billingContact.state);
        
+        // Setting two shipment options.
 
         opts.shippingOptions = [{
             typeId: 'ship-type-1',
@@ -79,8 +77,9 @@
             cost: 499,
             type: '2-Day Shipping'  
         }];
-        opts.calculateTax = function(shippingContact, billingContact, callback) {
 
+
+        opts.calculateTax = function(shippingContact, billingContact, callback) {
         // Can also call a backend API (please refer to the PHP in the folder, since I did not have a PHP running host, I did not call the API)
 
         // var postData = {
@@ -108,6 +107,7 @@
         };
 
 
+        // If Customer closes the financing module, based on the qualification, the alert will be displayed.
         opts.onCustomerClose = function(err, customer) {
             if (err !== null) {
                 console.error("An error occurred getting customer close data.");
