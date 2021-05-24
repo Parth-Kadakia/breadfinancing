@@ -13,10 +13,10 @@
     <div>
     	<!-- STEP 2:Button Placement and Configuration -->
 		<div id="bread-checkout-btn"></div>
+    </div>
 
-        <div id="abandonedmsg">
-            <span class="alert alert-info" id="msg"></span>
-        </div>
+    <div id="abandonedmsg">
+        <span class="alert alert-info" id="msg"></span>
     </div>
 	
       <script>
@@ -116,15 +116,15 @@
             var prequalStatus = customer.state;
             switch (prequalStatus) {
                 case 'PREQUALIFIED':
-                    document.getElementById('msg').innerHTML = customer.email + " was prequalified for financing.";
+                    document.getElementById('msg').textContent = customer.email + " was prequalified for financing.";
                     console.log(customer.email + " was prequalified for financing.");
                 break;
                 case 'PARTIALLY_PREQUALIFIED':
-                    document.getElementById('msg').innerHTML = customer.email + " was partially prequalified for financing.";
+                    document.getElementById('msg').textContent = customer.email + " was partially prequalified for financing.";
                     console.log(customer.email + " was partially prequalified for financing.");
                 break;
                 case 'NOT_PREQUALIFIED':
-                    document.getElementById('msg').innerHTML = customer.email + " was not prequalified for financing.";
+                    document.getElementById('msg').textContent = customer.email + " was not prequalified for financing.";
                     console.log(customer.email + " was not prequalified for financing.");
                 break;
             }
