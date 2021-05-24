@@ -16,36 +16,89 @@
     </div>
 			<!-- END STEP 2a -->
       <script>
+        // If you have their shipping address already, you can pass it to us
+        // so they do not have to fill it out again.
+        var shippingContact = {
+            firstName: 'Parth',
+            lastName: 'Kadakia',
+            address:  '1 John Doe',
+            address2: '',
+            zip:      '08901',
+            phone:    '5612253655',
+            city:     'New Brunswick',
+            state:    'NY',
+        };
+
+        // Likewise, if you have the billing contact, you can pass it in to us
+        // so they do not have to.
+        var billingContact = {
+            email:      'pkadakia23@gmail.com',
+            firstName:  'Parth',
+            lastName:   'Kadakia',
+            address:  '1 John Doe',
+            address2: '',
+            zip:      '08901',
+            phone:    '5612253655',
+            city:     'New Brunswick',
+            state:    'NY',
+        };
         var opts = {
-  callbackURL: '/replace/with/your/url',
-  completeURL: '/replace/with/your/url',
-  errorURL: '/replace/with/your/url',
-  orderRef: 'ABCD1234',
-  items: [{
-    name: 'Couch',
-    price: 150000,
-    sku: 'COUCH123',
-    imageUrl: '/replace/with/your/url',
-    detailUrl: '/replace/with/your/url', 
-    quantity: 1
-  }],
-  shippingOptions:[{
-    type: 'Ground',
-    typeId: '0123',
-    cost: 1500
-  }],
-  tax: 1000,
- 
-};
-                   
-bread.cartCreate(opts, function(err, data) {
-  if (err) {
-    // throw an error
-  } else {
-    // Take a look at data.asLowAs (particularly data.asLowAs.amount and data.asLowAs.asLowAsText)
-    // Generate email template for customer and send data.redirectUrl
-  }
-});
+            buttonId: 'bread-checkout-btn',
+            actAsLabel: false,
+            asLowAs: true,
+            customTotal: 10000,
+            shippingContact: shippingContact,
+            billingContact: billingContact,
+            tax: 0,
+            done: function(){
+            
+            },
+            customCSS : '#bread-button,body,html{height:100%;margin:0;width:100%}body{display:table}#bread-button{background:red;color:#FFFFFF;border:0px solid #ffffff;border-radius:4px;display:table-cell;font-family:Lato, HelveticaNeue, Helvetica Neue, sans-serif;font-size:16px;font-weight:400;text-align:center;vertical-align:middle;transition:all .3s ease}.bread-btn{cursor:pointer}#bread-button.bread-btn:hover{background:#50c742}.bread-embed-inner,.bread-label .bread-embed-icon{display:inline-block}.bread-label .bread-embed-icon:after{background:rgba(255,255,255,.5);border-radius:50px;color:#333;content:"i";cursor:pointer;display:inline-block;line-height:1;margin-left:8px;padding:4px 9px}.bread-pot:before{content:"Pay over time"}.bread-btn .bread-as-low-as:before,.bread-label .bread-as-low-as:before{content:"As low as "}.bread-for:before{content:"For "}'
+          /* END STEP 4 */
+        };
+
+        console.log("Billing State " + opts.billingContact.state);
+       
+
+        opts.shippingOptions = [{
+            typeId: 'ship-type-1',
+            cost: 999,
+            type: 'Overnight Shipping'
+            },{
+            typeId: 'ship-type-2',
+            cost: 499,
+            type: 'Standard Shipping'  
+        }];
+        opts.calculateTax = function(shippingContact, billingContact, callback) {
+            if(billingContact.state === 'NY'){
+                total: items[0].price + ((items[0].price * 5)/100)
+            }else{
+                total: tems[0].price
+            }
+            return total;
+        };
+
+        opts.onCustomerClose = function(err, customer) {
+            if (err !== null) {
+                console.error("An error occurred getting customer close data.");
+                return;
+            }
+            var prequalStatus = customer.state;
+            switch (prequalStatus) {
+                case 'PREQUALIFIED':
+                alert(customer.email + " was prequalified for financing.");
+                break;
+                case 'PARTIALLY_PREQUALIFIED':
+                alert(customer.email + " was partially prequalified for financing.");
+                break;
+                case 'NOT_PREQUALIFIED':
+                alert(customer.email + " was not prequalified for financing.");
+                break;
+            }
+        };
+
+        
+        bread.checkout(opts);
       </script>
     
   </body>

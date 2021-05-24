@@ -23,9 +23,9 @@
             lastName: 'Kadakia',
             address:  '1 John Doe',
             address2: '',
-            zip:      '08901',
+            zip:      '10023',
             phone:    '5612253655',
-            city:     'New Brunswick',
+            city:     'New York',
             state:    'NY',
         };
 
@@ -37,9 +37,9 @@
             lastName:   'Kadakia',
             address:  '1 John Doe',
             address2: '',
-            zip:      '08901',
+            zip:      '10023',
             phone:    '5612253655',
-            city:     'New Brunswick',
+            city:     'New York',
             state:    'NY',
         };
         var opts = {
@@ -86,20 +86,13 @@
             var prequalStatus = customer.state;
             switch (prequalStatus) {
                 case 'PREQUALIFIED':
-                console.log(customer.email + " was prequalified for financing.");
+                alert(customer.email + " was prequalified for financing.");
                 break;
                 case 'PARTIALLY_PREQUALIFIED':
-                console.log(customer.email + " was partially prequalified for financing.");
+                alert(customer.email + " was partially prequalified for financing.");
                 break;
                 case 'NOT_PREQUALIFIED':
-                console.log(customer.email + " was not prequalified for financing.");
-                break;
-                case 'ABANDONED':
-                if (customer.email === undefined || customer.email === null) {
-                    console.log("Unknown customer abandoned their prequalification attempt.");
-                } else {
-                    console.log(customer.email + " abandoned their prequalification attempt.");
-                }
+                alert(customer.email + " was not prequalified for financing.");
                 break;
             }
         };
