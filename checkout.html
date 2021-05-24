@@ -70,11 +70,21 @@
             type: 'Standard Shipping'  
         }];
         opts.calculateTax = function(shippingContact, billingContact, callback) {
-            if(billingContact.state === 'NY'){
-                return 5;
-            }else{
-                return 0;
-            }
+            $.ajax({
+                url: '/tax',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                shippingAddress: shippingContact,
+                total: items[0].price * items[0].quantity
+                })
+            })
+            .done(function(data){
+                callback(null, data);
+            })
+            .fail(function(err){
+                callback(err);
+            });
         };
 
         
